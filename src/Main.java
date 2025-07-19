@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 /**
  * Main class: analyzes .txt files using threads and zips them.
- * @author İrem Türen
+ *
+ * @author İrem Türen, Sefa Bulut
  */
 public class Main {
     private static final int MAX_THREADS = 10;
@@ -22,7 +23,7 @@ public class Main {
         }
 
         File[] allTxtFiles = inputFolder.listFiles((dir, name) -> name.endsWith(".txt"));
-        if (allTxtFiles == null|| allTxtFiles.length == 0) {
+        if (allTxtFiles == null || allTxtFiles.length == 0) {
             System.out.println("The .txt file was not found.");
             return;
         }
@@ -48,6 +49,16 @@ public class Main {
                 e.printStackTrace();
             }
         }
+
+        // Map içeriğini yazdırma
+        int totalNumberOfChars = 0;
+        int totalNumberOfLines = 0;
+        for (Map.Entry<String, FileStats> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+            totalNumberOfChars += entry.getValue().getNumberOfChars();
+            totalNumberOfLines += entry.getValue().getNumberOfLines();
+        }
+        System.out.println("Total: " + totalNumberOfLines + " line / " + totalNumberOfChars + " characters");
 
         Thread zipThread = new Thread(new FileZipper(selectedFiles, OUTPUT_ZIP_PATH));
         zipThread.start();
