@@ -27,7 +27,7 @@ public class FileAnalyzer implements Runnable {
             }
 
             // Hesaplanan değerlerin map'e konulması
-            map.put(file.getName(), new FileStats(numberOfChars, numberOfLines));
+            map.put(file.getName(), new FileStats(numberOfLines,numberOfChars));
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);

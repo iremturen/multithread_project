@@ -20,7 +20,7 @@ public class FileZipper extends Thread {
 
     @Override
     public void run() {
-        System.out.println("Creating zip...");
+        System.out.println("*** Creating zip ***");
 
         try {
             // .zip dosyasını yazmak için gerekli stream
@@ -56,7 +56,7 @@ public class FileZipper extends Thread {
                     zipFinal.closeEntry();
                     dosyaGiris.close();
 
-                    System.out.println(dosya.getName() + "added to the zip file.");
+                    System.out.println(dosya.getName() + " added to the zip file.");
 
                 } catch (IOException e) {
                     System.out.println("Error occurred:" + dosya.getName());
@@ -67,7 +67,7 @@ public class FileZipper extends Thread {
             zipFinal.close();
             dosyaFinal.close();
 
-            System.out.println("✅ Zip creation completed:" + zipYol);
+            System.out.println("✅ Zip creation completed: " + zipYol);
 
         } catch (IOException e) {
             System.out.println("❌ An error occurred while creating the zip.");

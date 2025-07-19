@@ -1,0 +1,28 @@
+In the realm of software development, there are countless languages, tools, and frameworks to choose from. 
+Each one brings its own strengths, weaknesses, and quirks to the table. 
+Among these tools, multithreading stands out as both powerful and challenging. 
+It allows programs to perform many tasks simultaneously, unlocking greater speed and responsiveness. 
+However, with great power comes great responsibility — and debugging multithreaded code can be a nightmare.
+
+Imagine a tool that reads through hundreds of text files, analyzing their content for meaningful insights. 
+This tool does not run sequentially, no — it harnesses the power of threads. 
+Each file is assigned to a separate thread, analyzed in isolation, and the results are collected in a thread-safe map. 
+The lines are counted. The characters are tallied. The file names are stored. 
+The tool marches on, tirelessly, consuming one file after another.
+
+And then, when the dust has settled, all those analyzed files are zipped together — neatly packed into a single archive. 
+It’s not just analysis. It’s compression. It’s automation. It’s efficient. 
+What began as a student project turned into a genuinely useful utility.
+
+The developer, İrem, began the journey unsure of how threads worked. 
+But soon she mastered `ConcurrentHashMap`, thread coordination, and file I/O. 
+She wrote `FileAnalyzer`, a class that extended `Thread`, took a `File`, and returned its stats. 
+She wrote `FileStats`, a clean data holder. And finally, a `Main` class to orchestrate it all.
+
+Some files were small, some were long. Some had quotes from books, others were just test data. 
+It didn’t matter. Each was read, processed, logged, and archived.
+
+Over time, she added more features: total character count, total lines, sorted outputs, user interface.
+Maybe one day, it would analyze PDFs, JSONs, maybe even do sentiment analysis.
+
+But for now, it was just a beautiful example of how Java multithreading can be tamed.
