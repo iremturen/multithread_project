@@ -3,7 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 /**
  * Main class: analyzes .txt files using threads and zips them.
  *
@@ -51,12 +52,13 @@ public class Main {
         }
 
         // Map içeriğini yazdırma
+        System.out.println("*** Starting the file analysis. ***");
         int totalNumberOfChars = 0;
         int totalNumberOfLines = 0;
-        for (Map.Entry<String, FileStats> entry : map.entrySet()) {
+        for (Map.Entry<String, FileStats> entry : resultMap.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
-            totalNumberOfChars += entry.getValue().getNumberOfChars();
-            totalNumberOfLines += entry.getValue().getNumberOfLines();
+            totalNumberOfChars += entry.getValue().getCharCount();
+            totalNumberOfLines += entry.getValue().getLineCount();
         }
         System.out.println("Total: " + totalNumberOfLines + " line / " + totalNumberOfChars + " characters");
 
