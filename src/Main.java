@@ -1,7 +1,6 @@
 import fileOperations.FileAnalyzer;
 import fileOperations.FileStats;
 import fileOperations.FileZipper;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,6 +19,7 @@ public class Main {
     private static final String OUTPUT_ZIP_PATH = "output/files.zip";
 
     public static void main(String[] args) throws FileNotFoundException {
+        long totalStart = System.nanoTime();
         File inputFolder = new File(INPUT_FOLDER_PATH);
 
         if (!inputFolder.exists() || !inputFolder.isDirectory()) {
@@ -41,6 +41,8 @@ public class Main {
         ConcurrentHashMap<String, FileStats> resultMap = new ConcurrentHashMap<>();
         List<Thread> threadList = new ArrayList<>();
 
+        long analysisStart = System.nanoTime();
+
         for (File file : selectedFiles) {
             Thread t = new Thread(new FileAnalyzer(file, resultMap));
             threadList.add(t);
@@ -55,6 +57,9 @@ public class Main {
             }
         }
 
+        long analysisEnd = System.nanoTime();
+        System.out.printf("Total analysis process duration: %,d ns (%.3f ms)%n", (analysisEnd - analysisStart), (analysisEnd - analysisStart) / 1_000_000.0);
+
         // Map içeriğini yazdırma
         System.out.println("*** Starting the file analysis. ***");
         int totalNumberOfChars = 0;
@@ -66,6 +71,7 @@ public class Main {
         }
         System.out.println("Total: " + totalNumberOfLines + " line / " + totalNumberOfChars + " characters");
 
+        long zipStart = System.nanoTime();
         Thread zipThread = new Thread(new FileZipper(selectedFiles, OUTPUT_ZIP_PATH));
         zipThread.start();
 
@@ -75,5 +81,11 @@ public class Main {
             System.err.println("Zip thread was interrupted.");
             e.printStackTrace();
         }
+
+        long zipEnd = System.nanoTime();
+        System.out.printf("Zip process duration: %,d ns (%.3f ms)%n", (zipEnd - zipStart), (zipEnd - zipStart) / 1_000_000.0);
+
+        long totalEnd = System.nanoTime();
+        System.out.printf("Total program duration: %,d ns (%.3f ms)%n", (totalEnd - totalStart), (totalEnd - totalStart) / 1_000_000.0);
     }
 }
