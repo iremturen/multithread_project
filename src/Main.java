@@ -1,3 +1,7 @@
+import fileOperations.FileAnalyzer;
+import fileOperations.FileStats;
+import fileOperations.FileZipper;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.concurrent.ConcurrentHashMap;

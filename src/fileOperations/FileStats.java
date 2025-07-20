@@ -1,3 +1,5 @@
+package fileOperations;
+
 /**
  * Holds line and character counts for a file.
  * @author İrem Türen
