@@ -78,7 +78,7 @@ public class Main {
         try {
             zipThread.join();
         } catch (InterruptedException e) {
-            System.err.println("Zip thread was interrupted.");
+            System.err.println("Zip thread kesintiye uğradı.");
             e.printStackTrace();
         }
 
