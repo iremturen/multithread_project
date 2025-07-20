@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ASCII"?>
+<diagram:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:diagram="http://osate.org/diagram" formatVersion="7">
+  <element uuid="622d7c90-3ea4-49b7-92af-2d799c0a2158" manual="true">
+    <element uuid="822dbc09-2fa2-4355-bcd2-708a9c8098cf" manual="true">
+      <element uuid="55303d13-7677-451a-a3a2-9f413a561cf6" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>connec1</seg>
+      </bo>
+    </element>
+    <element uuid="338fc7f2-26c6-4529-91dc-629d24087935" manual="true">
+      <element uuid="2cfcd636-2223-44e2-bbda-9f3ea17057eb" manual="true">
+        <bo>
+          <seg>tag</seg>
+          <seg>unidirectional</seg>
+        </bo>
+      </element>
+      <bo>
+        <seg>connection</seg>
+        <seg>connec2</seg>
+      </bo>
+    </element>
+    <element uuid="823b94c1-7431-4144-b014-3b0685e81f45" manual="true" dockArea="left">
+      <bo>
+        <seg>feature</seg>
+        <seg>receive_req_from_main</seg>
+      </bo>
+      <position y="60.0"/>
+    </element>
+    <element uuid="8955bf98-9332-485f-8f84-fac051992573" manual="true" dockArea="left">
+      <bo>
+        <seg>feature</seg>
+        <seg>return_zipped_files_to_main</seg>
+      </bo>
+      <position y="160.0"/>
+    </element>
+    <element uuid="70b02fbb-e537-48bf-b27f-2f25df4e74e9" manual="true">
+      <element uuid="a0ec4de5-6708-4ef0-bb3c-3147b7e5a922" manual="true" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>receive_req_from_main</seg>
+        </bo>
+        <position x="311.57159423828125" y="10.0"/>
+      </element>
+      <element uuid="5319aac9-58fd-4fb0-94d1-0c7106f7e83b" manual="true" dockArea="right">
+        <bo>
+          <seg>feature</seg>
+          <seg>return_zipped_files_to_main</seg>
+        </bo>
+        <position x="284.1236877441406" y="60.0"/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>FileZipp</seg>
+      </bo>
+      <position x="191.5130157470703" y="38.0"/>
+      <size width="463.63670349121094" height="110.0"/>
+    </element>
+    <element uuid="f3e25a11-ec48-4ba8-a39d-c84b05947cff" manual="true">
+      <element uuid="d7e71248-3de7-465d-bad8-2f846b204536" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>receive_req_from_file_zipper</seg>
+        </bo>
+        <position y="60.0"/>
+      </element>
+      <element uuid="e5df6c60-44e5-434a-9395-03bc6594681a" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>receive_return_message_from_analyzer</seg>
+        </bo>
+        <position y="110.0"/>
+      </element>
+      <element uuid="687e01b9-50ea-47dd-b213-42f6ec700637" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>send_req_to_analyzer</seg>
+        </bo>
+        <position y="160.0"/>
+      </element>
+      <element uuid="3251a9a8-6a9b-4d33-a62c-9599d22fb843" manual="true" dockArea="left">
+        <bo>
+          <seg>feature</seg>
+          <seg>send_req_to_file_zipper</seg>
+        </bo>
+        <position y="10.0"/>
+      </element>
+      <bo>
+        <seg>subcomponent</seg>
+        <seg>mainP</seg>
+      </bo>
+      <position x="675.1497344970703" y="38.0"/>
+      <size width="596.2603340148926" height="210.0"/>
+    </element>
+    <bo>
+      <seg>classifier</seg>
+      <seg>FileZipperJava.Impl</seg>
+    </bo>
+    <position/>
+    <size width="1462.9231262207031" height="260.0"/>
+  </element>
+  <config type="structure" connectionPrimaryLabelsVisible="false">
+    <enabledAadlProperties/>
+    <context>
+      <seg>classifier</seg>
+      <seg>infina_multithread_project::FileZipperJava.Impl</seg>
+    </context>
+  </config>
+</diagram:Diagram>

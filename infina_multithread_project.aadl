@@ -1,0 +1,97 @@
+package infina_multithread_project
+public
+
+	system MainJava
+		features
+			send_req_to_analyzer: out data port;
+			receive_return_message_from_analyzer: in data port;
+			
+			send_req_to_file_zipper: out data port;
+			receive_req_from_file_zipper: in data port;
+	end MainJava;
+
+
+
+	system FileAnalyzerJava
+		features
+			receive_req_from_main: in data port;
+			send_message_to_main: out data port;
+			
+			send_req_to_stats: out data port;
+			receive_time_from_stats: in data port;
+	end FileAnalyzerJava;
+
+	
+	
+	system implementation MainJava.Impl
+		subcomponents
+			mainJ: system MainJava;
+			FileA: system FileAnalyzerJava;
+		connections
+			conn1: port mainJ.send_req_to_analyzer -> FileA.receive_req_from_main;
+			conn2: port FileA.send_message_to_main -> mainJ.receive_return_message_from_analyzer;
+	end MainJava.Impl;
+	
+	
+	
+	system FileStatsJava
+		features
+			receive_req_from_analyzer: in data port;
+			return_to_analyzer: out data port;
+	end FileStatsJava;
+	
+	
+	
+	system implementation FileStatsJava.Impl
+		subcomponents
+			FileST: system FileStatsJava;
+			FileAN: system FileAnalyzerJava;
+			
+		connections
+			connect1: port FileAN.send_req_to_stats -> FileST.receive_req_from_analyzer;
+			connect2: port FileST.return_to_analyzer -> FileAN.receive_time_from_stats;
+	end FileStatsJava.Impl;
+	
+
+	system FileZipperJava
+		features
+			receive_req_from_main: in data port;
+			return_zipped_files_to_main: out data port; 
+	end FileZipperJava;
+	
+	
+	
+	system implementation FileZipperJava.Impl
+		subcomponents
+			FileZipp: system FileZipperJava;
+			mainP: system MainJava;
+			
+		connections
+			connec1: port mainP.send_req_to_file_zipper -> FileZipp.receive_req_from_main;
+			connec2: port FileZipp.return_zipped_files_to_main -> mainP.receive_req_from_file_zipper;
+	end FileZipperJava.Impl;
+	
+	
+	
+	system infina_multithread_projct
+	end infina_multithread_projct;
+	
+	system implementation infina_multithread_projct.Impl
+		subcomponents
+			main: system MainJava;
+			FileAnalyzer: system FileAnalyzerJava;
+			FileStats: system FileStatsJava;
+			FileZipper: system FileZipperJava;
+		connections
+			conn1: port main.send_req_to_analyzer -> FileAnalyzer.receive_req_from_main;
+			conn2: port FileAnalyzer.send_message_to_main -> main.receive_return_message_from_analyzer;
+			
+			conn3: port FileAnalyzer.send_req_to_stats -> FileStats.receive_req_from_analyzer;
+			conn4: port FileStats.return_to_analyzer -> FileAnalyzer.receive_time_from_stats;
+			
+			conn5: port main.send_req_to_file_zipper -> FileZipper.receive_req_from_main;
+			conn6: port FileZipper.return_zipped_files_to_main -> main.receive_req_from_file_zipper;
+			
+	end infina_multithread_project.Impl;
+	
+end infina_multithread_project;
